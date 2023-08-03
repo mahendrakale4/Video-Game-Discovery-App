@@ -1,26 +1,21 @@
-import Alert from "./components/Alert";
-import ListGroup from "./components/ListGroup";
-import Button from "./components/Button";
+// import Form from './components/Form';
 import { useState } from "react";
-import 'bootstrap/dist/css/bootstrap.css';
-// import './App.css';
+import ExpenseList from "./Expense-tracker/components/expenseList";
+
+import "bootstrap/dist/css/bootstrap.css";
 
 function App() {
-  const [alertVisible, setalertVisible] = useState(false);
-  const items = ["New York", "Paris", "Mumbai", "London"];
- 
+  const [expenses, setExpenses] = useState([
+    { id: 1, description: "AAA", amount: 10, category: "Utilities" },
+    { id: 1, description: "AAA", amount: 10, category: "Utilities" },
+    { id: 1, description: "AAA", amount: 10, category: "Utilities" },
+  ]);
+
   return (
     <div>
-      {alertVisible && (
-        <Alert onclose={() => setalertVisible(false)}> Hello Mahendra</Alert>
-      )}
-
-      <Button onClick={() => setalertVisible(true)}>My Button</Button>
-
-      <ListGroup
-        items={items}
-        heading={"Citis"}
-        onSelectItem={function (item: string): void {}}
+      < ExpenseList
+        expenses={expenses} 
+        onDelete={(id) => setExpenses(expenses.filter((e) => e.id !== id))}
       />
     </div>
   );
